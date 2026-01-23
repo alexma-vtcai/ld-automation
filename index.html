@@ -92,4 +92,218 @@
             border: 2px dashed #cbd5e1;
             overflow: hidden;
         }
-        .tool-image img { width: 100%; height: 100%; object
+        .tool-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .emoji-badge { font-size: 3rem; display: block; margin-bottom: 15px; }
+        h2 { margin-top: 0; color: var(--primary); }
+
+        /* --- ACTION BUTTON --- */
+        .trigger-btn {
+            display: inline-block;
+            background-color: #0078D4; /* OneDrive Blue */
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 4px 6px rgba(0,120,212, 0.3);
+        }
+        .trigger-btn:hover { background-color: #005a9e; }
+        .trigger-btn::after { content: " 🔒"; font-size: 0.8em;}
+
+        /* --- MODAL / POPUP --- */
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px); 
+        }
+
+        .modal-box {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .modal-title { margin: 0 0 10px 0; color: var(--text); }
+        .modal-text { color: #64748b; margin-bottom: 25px; }
+        
+        .warning-box {
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #9f1239;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .modal-actions { display: flex; gap: 10px; justify-content: center; }
+
+        .btn-cancel {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            color: #64748b;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-confirm {
+            padding: 10px 20px;
+            border-radius: 6px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .btn-confirm:hover { background: var(--secondary); }
+
+        @media (max-width: 768px) {
+            .tool-section, .tool-section:nth-child(even) { flex-direction: column; text-align: center; }
+            .tool-image { width: 100%; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>LD Automation Suite</h1>
+        <p>Internal Tools & Macros Dashboard</p>
+    </header>
+
+    <div class="nav-container">
+        <a href="#tool1" class="nav-btn">📊 Sales Report</a>
+        <a href="#tool2" class="nav-btn">📧 Email Bot</a>
+        <a href="#tool3" class="nav-btn">🧹 Data Clean</a>
+        <a href="#tool4" class="nav-btn">📅 Roster Gen</a>
+        <a href="#tool5" class="nav-btn">📈 Variance Tool</a>
+    </div>
+
+    <div class="container">
+
+        <div id="tool1" class="tool-section">
+            <div class="tool-image">
+                <img src="https://placehold.co/600x400/e2e8f0/64748b?text=Tool+1+Screenshot" alt="Tool 1">
+            </div>
+            <div class="tool-content">
+                <span class="emoji-badge">📊</span>
+                <h2>Sales Report Generator</h2>
+                <p>Automated formatting for monthly raw CSV dumps. Generates pivot tables and highlights KPIs.</p>
+                <button class="trigger-btn" onclick="openModal('YOUR_ONEDRIVE_LINK_1')">Open Tool</button>
+            </div>
+        </div>
+
+        <div id="tool2" class="tool-section">
+            <div class="tool-image">
+                <img src="https://placehold.co/600x400/e2e8f0/64748b?text=Tool+2+Screenshot" alt="Tool 2">
+            </div>
+            <div class="tool-content">
+                <span class="emoji-badge">🤖</span>
+                <h2>Auto Email Bot</h2>
+                <p>Batch sends Outlook emails to clients with region-specific attachments. Requires Outlook Desktop.</p>
+                <button class="trigger-btn" onclick="openModal('YOUR_ONEDRIVE_LINK_2')">Open Tool</button>
+            </div>
+        </div>
+
+        <div id="tool3" class="tool-section">
+            <div class="tool-image">
+                <img src="https://placehold.co/600x400/e2e8f0/64748b?text=Tool+3+Screenshot" alt="Tool 3">
+            </div>
+            <div class="tool-content">
+                <span class="emoji-badge">🧹</span>
+                <h2>Data Cleansing Macro</h2>
+                <p>One-click cleanup: Removes duplicates, trims spaces, and fixes date formats.</p>
+                <button class="trigger-btn" onclick="openModal('YOUR_ONEDRIVE_LINK_3')">Open Tool</button>
+            </div>
+        </div>
+
+        <div id="tool4" class="tool-section">
+            <div class="tool-image">
+                <img src="https://placehold.co/600x400/e2e8f0/64748b?text=Tool+4+Screenshot" alt="Tool 4">
+            </div>
+            <div class="tool-content">
+                <span class="emoji-badge">📅</span>
+                <h2>Roster Generator</h2>
+                <p>Calculates shift rotations and ensures fair weekend distribution. Exports to PDF.</p>
+                <button class="trigger-btn" onclick="openModal('YOUR_ONEDRIVE_LINK_4')">Open Tool</button>
+            </div>
+        </div>
+
+        <div id="tool5" class="tool-section">
+            <div class="tool-image">
+                <img src="https://placehold.co/600x400/e2e8f0/64748b?text=Tool+5+Screenshot" alt="Tool 5">
+            </div>
+            <div class="tool-content">
+                <span class="emoji-badge">📈</span>
+                <h2>Variance Analysis</h2>
+                <p>Budget vs. Actuals comparison tool with "What-If" scenario planning features.</p>
+                <button class="trigger-btn" onclick="openModal('YOUR_ONEDRIVE_LINK_5')">Open Tool</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="securityModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="modal-icon">⚠️</span>
+            <h3 class="modal-title">Wait! One Step Required</h3>
+            <p class="modal-text">To use this tool, you must enable Macros in Excel.</p>
+            
+            <div class="warning-box">
+                <strong>💡 Instructions:</strong><br>
+                1. After the file opens, click <b>"Editing > Open in Desktop App"</b><br>
+                2. When Excel opens, look for the yellow bar and click <b>"Enable Content"</b>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <a id="confirmBtn" href="#" target="_blank" class="btn-confirm" onclick="closeModal()">I Understand, Open File</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('securityModal');
+        const confirmBtn = document.getElementById('confirmBtn');
+
+        function openModal(link) {
+            confirmBtn.href = link;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
