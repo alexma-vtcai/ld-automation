@@ -11,7 +11,7 @@
             --bg: #f8fafc;
             --card-bg: #ffffff;
             --text: #1e293b;
-            --danger: #ef4444; /* Red for the warning */
+            --danger: #ef4444; 
         }
 
         body {
@@ -21,9 +21,10 @@
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            scroll-behavior: smooth; /* Makes the jump to sections smooth */
         }
 
-        /* --- HEADER & NAV (Same as before) --- */
+        /* --- HEADER --- */
         header {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
@@ -33,17 +34,18 @@
         header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
         header p { margin-top: 10px; opacity: 0.8; }
 
+        /* --- NAVIGATION BAR --- */
         .nav-container {
             display: flex;
             justify-content: center;
             gap: 15px;
-            padding: 30px 20px;
+            padding: 20px 20px;
             flex-wrap: wrap;
             background: white;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 90; /* Lower than modal */
+            z-index: 90; 
         }
 
         .nav-btn {
@@ -71,10 +73,14 @@
             gap: 40px;
             align-items: center;
             scroll-margin-top: 100px;
+            border: 1px solid #e2e8f0;
         }
+        
+        /* Alternating Layout: Even numbers have reversed direction */
         .tool-section:nth-child(even) { flex-direction: row-reverse; }
 
         .tool-content { flex: 1; }
+        
         .tool-image { 
             flex: 1; 
             background: #f1f5f9; 
@@ -86,191 +92,4 @@
             border: 2px dashed #cbd5e1;
             overflow: hidden;
         }
-        .tool-image img { width: 100%; height: 100%; object-fit: cover; }
-        .emoji-badge { font-size: 3rem; display: block; margin-bottom: 15px; }
-        h2 { margin-top: 0; color: var(--primary); }
-
-        /* --- THE TRIGGER BUTTON --- */
-        /* Note: This is now a <button>, not an <a> tag */
-        .trigger-btn {
-            display: inline-block;
-            background-color: #0078D4;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
-            border: none;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: background 0.2s;
-            box-shadow: 0 4px 6px rgba(0,120,212, 0.3);
-        }
-        .trigger-btn:hover { background-color: #005a9e; }
-        .trigger-btn::after { content: " 🔒"; font-size: 0.8em;}
-
-        /* --- MODAL (POPUP) STYLES --- */
-        .modal-overlay {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(3px); /* Blur background effect */
-        }
-
-        .modal-box {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            position: relative;
-            animation: popIn 0.3s ease-out;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
-        .modal-title { margin: 0 0 10px 0; color: var(--text); }
-        .modal-text { color: #64748b; margin-bottom: 25px; }
-        
-        /* The specific instruction box */
-        .warning-box {
-            background: #fff1f2;
-            border: 1px solid #fecdd3;
-            color: #9f1239;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .btn-cancel {
-            padding: 10px 20px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            background: white;
-            color: #64748b;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        .btn-confirm {
-            padding: 10px 20px;
-            border-radius: 6px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .btn-confirm:hover { background: var(--secondary); }
-
-        @media (max-width: 768px) {
-            .tool-section, .tool-section:nth-child(even) { flex-direction: column; text-align: center; }
-            .tool-image { width: 100%; height: 200px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>LD Automation Suite</h1>
-        <p>Internal Tools & Macros Dashboard</p>
-    </header>
-
-    <div class="nav-container">
-        <a href="#tool1" class="nav-btn">📊 Sales Report</a>
-        <a href="#tool2" class="nav-btn">📧 Email Bot</a>
-        <a href="#tool3" class="nav-btn">🧹 Data Clean</a>
-    </div>
-
-    <div class="container">
-
-        <div id="tool1" class="tool-section">
-            <div class="tool-image">
-                <img src="https://placehold.co/600x400/e2e8f0/64748b?text=Screenshot+1" alt="Tool Interface">
-            </div>
-            <div class="tool-content">
-                <span class="emoji-badge">📊</span>
-                <h2>Sales Report Generator</h2>
-                <p>Automatically formats the raw monthly CSV dump. <b>Requires Macros enabled.</b></p>
-                <button class="trigger-btn" onclick="openModal('YOUR_ONEDRIVE_LINK_1')">Open Tool</button>
-            </div>
-        </div>
-
-        <div id="tool2" class="tool-section">
-            <div class="tool-image">
-                <img src="https://placehold.co/600x400/e2e8f0/64748b?text=Screenshot+2" alt="Tool Interface">
-            </div>
-            <div class="tool-content">
-                <span class="emoji-badge">🤖</span>
-                <h2>Auto Email Bot</h2>
-                <p>Drafts Outlook emails based on the client list. Handles attachments automatically.</p>
-                <button class="trigger-btn" onclick="openModal('YOUR_ONEDRIVE_LINK_2')">Open Tool</button>
-            </div>
-        </div>
-        
-        </div>
-
-    <div id="securityModal" class="modal-overlay">
-        <div class="modal-box">
-            <span class="modal-icon">⚠️</span>
-            <h3 class="modal-title">Wait! One Step Required</h3>
-            <p class="modal-text">To use this tool, you must enable Macros in Excel.</p>
-            
-            <div class="warning-box">
-                <strong>💡 Instructions:</strong><br>
-                1. After the file opens, click <b>"Editing > Open in Desktop App"</b><br>
-                2. When Excel opens, look for the yellow bar and click <b>"Enable Content"</b>
-            </div>
-
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-                <a id="confirmBtn" href="#" target="_blank" class="btn-confirm" onclick="closeModal()">I Understand, Open File</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const modal = document.getElementById('securityModal');
-        const confirmBtn = document.getElementById('confirmBtn');
-
-        // Function called when a user clicks a "Open Tool" button
-        function openModal(link) {
-            // Set the "I Understand" button to go to the correct link
-            confirmBtn.href = link;
-            // Show the modal
-            modal.style.display = 'flex';
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Close modal if user clicks outside the box
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
-
-</body>
-</html>
+        .tool-image img { width: 100%; height: 100%; object
